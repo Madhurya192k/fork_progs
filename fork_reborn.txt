@@ -1,0 +1,35 @@
+#include<stdio.h>
+#include<sys/types.h>
+#include<unistd.h>
+int main()
+{
+printf("Enter the value of n:");
+int n,sum=0;
+scanf("%d",&n);
+int a= fork();
+if(a==0)
+{
+int i;
+//printf("child process\n");
+for(i=1;i<=n;i++)
+{
+if(i%2==1)
+sum=sum+i;
+}
+printf("The sum of odd number upto %d = %d\n",n,sum);
+}
+
+if(a>0)
+{
+//printf("parent process\n");
+int i;
+sum=0;
+for(i=1;i<=n;i++)
+{
+if(i%2==0)
+sum=sum+i;
+}
+printf("The sum of even numbers upto %d = %d\n",n,sum);
+}
+return 0;
+}
